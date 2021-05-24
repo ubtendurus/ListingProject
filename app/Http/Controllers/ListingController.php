@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreListingRequest;
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Session\Store;
 
 class ListingController extends Controller
 {
@@ -26,7 +28,7 @@ class ListingController extends Controller
      */
     public function create()
     {
-        //
+        return view('listings.create');
     }
 
     /**
@@ -35,9 +37,11 @@ class ListingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreListingRequest $request)
     {
-        //
+        Listing::create($request->validated());
+
+        return redirect()->route('listings.index');
     }
 
     /**
@@ -59,7 +63,7 @@ class ListingController extends Controller
      */
     public function edit(Listing $listing)
     {
-        //
+        return view('listings.edit',compact('listing'));
     }
 
     /**
@@ -69,9 +73,11 @@ class ListingController extends Controller
      * @param  \App\Models\Listing  $listing
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Listing $listing)
+    public function update(StoreListingRequest $request, Listing $listing)
     {
-        //
+        $listing->update($request->validated());
+
+        return redirect()->route('listings.index');
     }
 
     /**
@@ -82,6 +88,7 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
-        //
+        $listing->delete();
+        return redirect()->route('listings.index');
     }
 }

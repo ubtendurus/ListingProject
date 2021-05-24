@@ -6,7 +6,7 @@
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register-step2.post') }}">
+        <form method="POST" action="{{ route('register-step2.post') }}" enctype="multipart/form-data">
             @csrf
 
             <div>
