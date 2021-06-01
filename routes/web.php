@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth','verified']], function(){
         [\App\Http\Controllers\RegisterStepTwoController::class, 'store'])
         ->name('register-step2.post');
 
+    Route::get('listings/{listings_id}/restore',[\App\Http\Controllers\ListingController::class, 'restore'])->name('listings.restore');
     Route::resource('listings',\App\Http\Controllers\ListingController::class);
 
 });

@@ -39,7 +39,8 @@ class ListingController extends Controller
      */
     public function store(StoreListingRequest $request)
     {
-        Listing::create($request->validated());
+
+        auth()->user()->listings()->create($request->validated());
 
         return redirect()->route('listings.index');
     }
@@ -63,6 +64,8 @@ class ListingController extends Controller
      */
     public function edit(Listing $listing)
     {
+        $this->authorize('update', $listing);
+
         return view('listings.edit',compact('listing'));
     }
 
@@ -75,6 +78,8 @@ class ListingController extends Controller
      */
     public function update(StoreListingRequest $request, Listing $listing)
     {
+
+        $this->authorize('update', $listing);
         $listing->update($request->validated());
 
         return redirect()->route('listings.index');
@@ -84,11 +89,29 @@ class ListingController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Listing  $listing
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function destroy(Listing $listing)
     {
+
+        $this->authorize('delete', $listing);
+
         $listing->delete();
-        return redirect()->route('listings.index');
+
+        return redirect()->route('listings.index')
+            ->with('message','Listing deleted successfully. <br><a href="'.route('listings.restore' , $listing->id).'"> Whoops, Undo </a>');
+    }
+
+    public function restore(int $listing_id)
+    {
+
+
+        $listing = Listing::withTrashed()->find($listing_id);
+        if($listing && $listing->trashed()){
+            $listing->restore();
+        }
+
+        return redirect()->route('listings.index')
+            ->with('message', 'Listing restored successfully');
     }
 }

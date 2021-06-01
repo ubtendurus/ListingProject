@@ -1,5 +1,4 @@
 <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" <?php echo e($attributes); ?>>
-  <path d="M11.395 44.428C4.557 40.198 0 32.632 0 24 0 10.745 10.745 0 24 0a23.891 23.891 0 0113.997 4.502c-.2 17.907-11.097 33.245-26.602 39.926z" fill="#6875F5"/>
-  <path d="M14.134 45.885A23.914 23.914 0 0024 48c13.255 0 24-10.745 24-24 0-3.516-.756-6.856-2.115-9.866-4.659 15.143-16.608 27.092-31.75 31.751z" fill="#6875F5"/>
+  <path d="M 12 24 L 30 3 L 39 0 L 36 9 L 15 27 C 18 30 18 33 21 30 C 21 33 24 36 21 36 A 4.2 4.2 90 0 1 18 39 A 15 15 90 0 0 12 30 Q 10.5 29.7 10.5 31.5 T 6 35.4 T 3.6 33 T 7.5 28.5 T 9 27 A 15 15 90 0 0 0 21 A 4.2 4.2 90 0 1 3 18 C 3 15 6 18 9 18 C 6 21 9 21 12 24 M 30 3 L 30 9 L 36 9 L 30.6 8.4 L 30 3" fill="#6875F5"/>
 </svg>
 <?php /**PATH C:\Users\utend\Desktop\laravel\listings\resources\views/vendor/jetstream/components/application-mark.blade.php ENDPATH**/ ?>
